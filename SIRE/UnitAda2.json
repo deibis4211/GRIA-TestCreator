@@ -12,6 +12,17 @@
       "questionType": "singleChoice"
     },
     {
+      "question": "Estás programando una pila y no quieres que el usuario pueda modificar directamente su estructura interna. ¿Qué opción es más adecuada en Ada?",
+      "options": [
+        "Declarar todo en el cuerpo del paquete como privado.",
+        "Usar solo funciones públicas sin tipos privados.",
+        "Permitir acceso directo a las variables privadas.",
+        "Declarar un tipo privado en la especificación del paquete."
+      ],
+      "correct_option": 3,
+      "questionType": "singleChoice"
+    },
+    {
       "question": "¿Cuál es la ventaja de combinar `select`, `guardas` y `delay`?",
       "options": [
         "Se puede ejecutar código en paralelo sin sincronización.",
@@ -84,6 +95,17 @@
         "El procedimiento no necesita parámetros.",
         "La entrada no puede tener cuerpo.",
         "La entrada puede sincronizar tareas; el procedimiento no."
+      ],
+      "correct_option": 3,
+      "questionType": "singleChoice"
+    },
+    {
+      "question": "¿Cuál de las siguientes afirmaciones es FALSA respecto a los tipos privados?",
+      "options": [
+        "Mejoran el encapsulamiento del código.",
+        "Ocultan la implementación al usuario.",
+        "Solo se pueden manipular a través de operaciones del paquete.",
+        "Permiten que el usuario acceda directamente a los campos del tipo."
       ],
       "correct_option": 3,
       "questionType": "singleChoice"
