@@ -12,6 +12,18 @@
       "questionType": "singleChoice"
     },
     {
+      "question": "Un alumno diseña un robot que siempre evalúa todas las metas posibles y genera todas las acciones asociadas, aunque no pueda ejecutarlas todas. ¿Qué problema tiene ese diseño?",
+      "options": [
+        "Es más eficiente que filtrar metas desde el principio.",
+        "Evita conflictos al tener muchas opciones.",
+        "Funciona bien si las acciones están priorizadas.",
+        "Genera acciones innecesarias que pueden sobrecargar el sistema o generar conflictos."
+      ],
+      "correct_option": 3,
+      "questionType": "singleChoice"
+    },
+
+    {
       "question": "¿Cuál es la mejor forma de mejorar el rendimiento de un robot en la Fase 3 con metas múltiples?",
       "options": [
         "Establecer una meta única y no considerar los demás factores del entorno.",
