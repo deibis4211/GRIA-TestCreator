@@ -144,17 +144,6 @@
       "questionType": "singleChoice"
     },
     {
-      "question": "¿Qué ocurre si una tarea tiene una entrada y otra parte del programa llama a esa entrada?",
-      "options": [
-        "La tarea se convierte en una función.",
-        "La llamada a la entrada produce un error en tiempo de ejecución.",
-        "La tarea termina automáticamente.",
-        "La tarea se sincroniza y ejecuta el código asociado a esa entrada."
-      ],
-      "correct_option": 3,
-      "questionType": "singleChoice"
-    },
-    {
       "question": "¿Qué ventaja tiene separar la especificación del cuerpo en un paquete?",
       "options": [
         "Aumenta la velocidad de ejecución.",
@@ -177,23 +166,45 @@
       "questionType": "singleChoice"
     },
     {
-      "question": "¿Cuál es la mejor razón para usar un tipo privado en Ada?",
-      "options": [
-        "Reduce el número de líneas de código.",
-        "Protege los datos y obliga a usar las operaciones definidas.",
-        "Hace que el programa se ejecute más rápido.",
-        "Facilita el acceso directo a todas las variables del tipo."
-      ],
-      "correct_option": 1,
-      "questionType": "singleChoice"
-    },
-    {
       "question": "¿Cuál de estos paquetes predefinidos de Ada se usa para manejar cadenas de texto sin longitud fija?",
       "options": [
         "Ada.Strings.Unbounded",
         "Ada.Calendar",
         "Ada.Integer_Text_IO",
         "Ada.Numerics"
+      ],
+      "correct_option": 0,
+      "questionType": "singleChoice"
+    },
+    {
+      "question": "Tu equipo necesita compartir una función común en varios programas. ¿Qué solución ofrece Ada para esto?",
+      "options": [
+        "Crear un paquete que contenga la función y usarlo en todos los programas.",
+        "Crear un archivo \".txt\" con el código y leerlo en tiempo de ejecución.",
+        "Escribir la función en el cuerpo principal del programa.",
+        "Copiar y pegar la función en cada archivo fuente."
+      ],
+      "correct_option": 0,
+      "questionType": "singleChoice"
+    },
+    {
+      "question": "¿Qué pasa si intentas acceder directamente a los campos de un tipo declarado como privado desde fuera del paquete?",
+      "options": [
+        "El compilador da un error porque no se permite el acceso.",
+        "Se puede acceder si el tipo es \"limited private\".",
+        "Se accede sin problema si usas \"use\".",
+        "Solo se muestra una advertencia."
+      ],
+      "correct_option": 0,
+      "questionType": "singleChoice"
+    },
+    {
+      "question": "Tienes varias tareas ejecutándose al mismo tiempo. ¿Cuál es la mejor forma de evitar problemas de sincronización?",
+      "options": [
+        "Usar entradas y `accept` para controlar cuándo cada tarea interactúa.",
+        "Usar solo procedimientos comunes.",
+        "Dejar que las tareas accedan libremente a todas las variables.",
+        "Evitar completamente el uso de tareas."
       ],
       "correct_option": 0,
       "questionType": "singleChoice"

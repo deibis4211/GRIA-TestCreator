@@ -170,6 +170,17 @@
       ],
       "correct_option": 0,
       "questionType": "singleChoice"
+    },
+    {
+      "question": "¿Qué ocurre si se intenta combinar una cláusula `delay` y una cláusula `terminate` dentro del mismo bloque `select ... or`?",
+      "options": [
+        "La tarea finalizará siempre por la cláusula `terminate`.",
+        "El programa compilará pero puede bloquearse en tiempo de ejecución.",
+        "El compilador mostrará un error porque esta combinación no está permitida.",
+        "Solo funciona si se usa `delay until` en lugar de `delay`."
+      ],
+      "correct_option": 2,
+      "questionType": "singleChoice"
     }
   ]
 }

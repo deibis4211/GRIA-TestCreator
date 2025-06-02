@@ -144,17 +144,6 @@
       "questionType": "singleChoice"
     },
     {
-      "question": "El robot de la Fase 1 recibe continuamente comandos secuenciales para actuar. Si se le indica primero avanzar y luego girar, ¿qué sucede?",
-      "options": [
-        "No puede ejecutar ninguna acción sin planificador táctico.",
-        "Intenta ejecutar ambos al mismo tiempo.",
-        "Ejecuta primero avanzar y luego girar, porque no hay concurrencia.",
-        "Se queda esperando nuevas órdenes sin actuar."
-      ],
-      "correct_option": 2,
-      "questionType": "singleChoice"
-    },
-    {
       "question": "El robot está en la Fase 2. Detecta que hay un obstáculo delante y también que la batería está baja. Las tareas de evitar obstáculos y cargar batería están activas.\n¿Qué acción realizará primero el robot, y por qué?",
       "options": [
         "Ambas acciones a la vez, porque el robot puede ejecutar varias acciones simultáneamente sin prioridad.",
@@ -177,36 +166,36 @@
       "questionType": "singleChoice"
     },
     {
-      "question": "En la Fase 4, si se modifica el planificador Táctico para que \"Girar\" tenga una prioridad de 0, ¿qué impacto tendría en la ejecución?",
+      "question": "¿Qué define una actuación efectiva en un sistema autónomo?",
       "options": [
-        "No se ejecutaría ninguna acción debido a que la prioridad 0 es inválida.",
-        "\"Girar\" sería ignorado, ya que tendría una prioridad inferior a las otras acciones.",
-        "La acción \"Girar\" se ejecutaría simultáneamente con \"Cargar\" debido a que ambas tendrían la misma prioridad.",
-        "\"Girar\" tendría la mayor prioridad y sería ejecutado antes que las otras acciones."
+        "Que se ejecuten todas las acciones posibles por si alguna falla.",
+        "Que se ejecute una acción adecuada al contexto, en el momento oportuno y sin interferencias.",
+        "Que se actúe lo más rápido posible sin esperar.",
+        "Que se usen todos los recursos disponibles para la acción."
       ],
       "correct_option": 1,
       "questionType": "singleChoice"
     },
     {
-      "question": "¿Cuál es la mejor forma de mejorar el rendimiento de un robot en la Fase 3 con metas múltiples?",
+      "question": "¿Cuál es el objetivo principal de la Fase 1?",
       "options": [
-        "Ignorar las prioridades y trabajar de manera aleatoria para obtener resultados más rápidos.",
-        "Evitar el uso de prioridades entre las metas para no interferir en el proceso.",
-        "Establecer una meta única y no considerar los demás factores del entorno.",
-        "Organizar las metas en un sistema jerárquico para que se resuelvan de manera estratégica."
+        "Añadir una jerarquía de planificación para tomar decisiones tácticas.",
+        "Mejorar la capacidad del robot para interactuar con múltiples sensores.",
+        "Crear un robot que solo realice acciones de espera.",
+        "Implementar un robot que ejecute tareas secuenciales sin prioridades."
       ],
       "correct_option": 3,
       "questionType": "singleChoice"
     },
     {
-      "question": "Durante la ejecución del ciclo de la Fase 3, el planificador detecta que no hay obstáculos, pero la batería está baja. El robot tiene tareas con diferentes prioridades. ¿Cuál sería un error común al implementar esto?",
+      "question": "¿Qué sucedería si el planificador Táctico no pudiera asignar ninguna meta durante el ciclo de planificación en la Fase 4?",
       "options": [
-        "No respetar las prioridades fijas entre tareas concurrentes.",
-        "Permitir que el robot avance sin revisar la batería.",
-        "Implementar un planificador táctico que no use prioridades.",
-        "Permitir que todas las tareas se bloqueen entre sí."
+        "El planificador Estratégico asumiría que el robot debe continuar sin cambios en su estado.",
+        "El robot seguiría ejecutando la última acción asignada sin cambios.",
+        "No se ejecutaría ninguna acción y el robot permanecería en espera.",
+        "El robot comenzaría a avanzar automáticamente."
       ],
-      "correct_option": 0,
+      "correct_option": 2,
       "questionType": "singleChoice"
     }
   ]
