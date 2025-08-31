@@ -68,6 +68,9 @@ function switchStyle() {
     // Save the new current style (save the path, not the name)
     saveCurrentStyle(stylePath);
 
+    // Re-evaluate theme button visibility after style change
+    updateThemeButtonVisibility();
+
     console.log(`Switched to style: ${nextStyleName} (${stylePath})`);
   }
 }
@@ -93,6 +96,66 @@ function applyCurrentStyle() {
   }
 }
 
+// Check if current style has a corresponding Light/Dark counterpart
+function hasThemeCounterpart() {
+  const currentStyleName = getCurrentStyleName();
+  if (!currentStyleName) return false;
+
+  const availableStyles = getAvailableStyleNames();
+  
+  if (currentStyleName.endsWith(' Dark')) {
+    const lightStyleName = currentStyleName.replace(' Dark', ' Light');
+    return availableStyles.includes(lightStyleName);
+  } else if (currentStyleName.endsWith(' Light')) {
+    const darkStyleName = currentStyleName.replace(' Light', ' Dark');
+    return availableStyles.includes(darkStyleName);
+  }
+  
+  return false;
+}
+
+// Update theme button visibility based on current style
+function updateThemeButtonVisibility() {
+  const themeButton = document.getElementById("theme-btn");
+  
+  if (hasThemeCounterpart()) {
+    // Show button if it doesn't exist, create it
+    if (!themeButton) {
+      createThemeButton();
+    } else {
+      themeButton.style.display = "block";
+    }
+  } else {
+    // Hide button if it exists
+    if (themeButton) {
+      themeButton.style.display = "none";
+    }
+  }
+}
+
+// Create theme switch button that toggles between Light and Dark
+function createThemeButton() {
+  // Check if button already exists to avoid duplicates
+  if (document.getElementById("theme-btn")) {
+    return;
+  }
+
+  const themeButton = document.createElement("button");
+  themeButton.id = "theme-btn";
+  themeButton.className = "theme-btn small-btn";
+  themeButton.textContent = "THEME";
+
+  // Set initial visibility based on current style
+  themeButton.style.display = hasThemeCounterpart() ? "block" : "none";
+
+  // TODO: Add theme switching functionality
+  themeButton.onclick = function () {
+    console.log("Theme button clicked - functionality to be implemented");
+  };
+
+  document.body.appendChild(themeButton);
+}
+
 // Create style switch button similar to back button
 function createStyleButton() {
   // Check if button already exists to avoid duplicates
@@ -112,13 +175,15 @@ function createStyleButton() {
   document.body.appendChild(styleButton);
 }
 
-// Apply current style and create button when the DOM is loaded
+// Apply current style and create buttons when the DOM is loaded
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", function () {
     applyCurrentStyle();
     createStyleButton();
+    createThemeButton();
   });
 } else {
   applyCurrentStyle();
   createStyleButton();
+  createThemeButton();
 }
