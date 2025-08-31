@@ -114,6 +114,47 @@ function hasThemeCounterpart() {
   return false;
 }
 
+// Switch between Light and Dark theme variants of current style
+function switchTheme() {
+  const currentStyleName = getCurrentStyleName();
+  if (!currentStyleName) return;
+
+  let targetStyleName;
+  
+  if (currentStyleName.endsWith(' Dark')) {
+    targetStyleName = currentStyleName.replace(' Dark', ' Light');
+  } else if (currentStyleName.endsWith(' Light')) {
+    targetStyleName = currentStyleName.replace(' Light', ' Dark');
+  } else {
+    // Current style doesn't have Light/Dark suffix, can't switch
+    return;
+  }
+
+  const availableStyles = getAvailableStyleNames();
+  if (!availableStyles.includes(targetStyleName)) {
+    console.log(`Target theme "${targetStyleName}" not available`);
+    return;
+  }
+
+  // Apply the theme counterpart
+  const existingLinks = document.querySelectorAll("link[data-style-switcher]");
+  existingLinks.forEach((link) => link.remove());
+
+  const stylePath = getStylePath(targetStyleName);
+  if (stylePath) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = stylePath;
+    link.setAttribute("data-style-switcher", "true");
+    document.head.appendChild(link);
+
+    // Save the new current style
+    saveCurrentStyle(stylePath);
+
+    console.log(`Switched theme from "${currentStyleName}" to "${targetStyleName}"`);
+  }
+}
+
 // Update theme button visibility based on current style
 function updateThemeButtonVisibility() {
   const themeButton = document.getElementById("theme-btn");
@@ -148,9 +189,9 @@ function createThemeButton() {
   // Set initial visibility based on current style
   themeButton.style.display = hasThemeCounterpart() ? "block" : "none";
 
-  // TODO: Add theme switching functionality
+  // Add theme switching functionality
   themeButton.onclick = function () {
-    console.log("Theme button clicked - functionality to be implemented");
+    switchTheme();
   };
 
   document.body.appendChild(themeButton);
