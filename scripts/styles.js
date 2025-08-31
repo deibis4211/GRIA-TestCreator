@@ -102,15 +102,15 @@ function hasThemeCounterpart() {
   if (!currentStyleName) return false;
 
   const availableStyles = getAvailableStyleNames();
-  
-  if (currentStyleName.endsWith(' Dark')) {
-    const lightStyleName = currentStyleName.replace(' Dark', ' Light');
+
+  if (currentStyleName.endsWith(" Dark")) {
+    const lightStyleName = currentStyleName.replace(" Dark", " Light");
     return availableStyles.includes(lightStyleName);
-  } else if (currentStyleName.endsWith(' Light')) {
-    const darkStyleName = currentStyleName.replace(' Light', ' Dark');
+  } else if (currentStyleName.endsWith(" Light")) {
+    const darkStyleName = currentStyleName.replace(" Light", " Dark");
     return availableStyles.includes(darkStyleName);
   }
-  
+
   return false;
 }
 
@@ -120,11 +120,11 @@ function switchTheme() {
   if (!currentStyleName) return;
 
   let targetStyleName;
-  
-  if (currentStyleName.endsWith(' Dark')) {
-    targetStyleName = currentStyleName.replace(' Dark', ' Light');
-  } else if (currentStyleName.endsWith(' Light')) {
-    targetStyleName = currentStyleName.replace(' Light', ' Dark');
+
+  if (currentStyleName.endsWith(" Dark")) {
+    targetStyleName = currentStyleName.replace(" Dark", " Light");
+  } else if (currentStyleName.endsWith(" Light")) {
+    targetStyleName = currentStyleName.replace(" Light", " Dark");
   } else {
     // Current style doesn't have Light/Dark suffix, can't switch
     return;
@@ -151,14 +151,16 @@ function switchTheme() {
     // Save the new current style
     saveCurrentStyle(stylePath);
 
-    console.log(`Switched theme from "${currentStyleName}" to "${targetStyleName}"`);
+    console.log(
+      `Switched theme from "${currentStyleName}" to "${targetStyleName}"`,
+    );
   }
 }
 
 // Update theme button visibility based on current style
 function updateThemeButtonVisibility() {
   const themeButton = document.getElementById("theme-btn");
-  
+
   if (hasThemeCounterpart()) {
     // Show button if it doesn't exist, create it
     if (!themeButton) {
