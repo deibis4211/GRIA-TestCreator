@@ -4,7 +4,8 @@ body {
 }
 
 .container {
-  padding: calc(clamp(10px, 2vw, 20px) + clamp(5px, 1.5vw, 8px))  calc(clamp(10px, 2vw, 20px) + clamp(5px, 1.5vw, 8px) + 2em);
+  padding: calc(clamp(10px, 2vw, 20px) + clamp(5px, 1.5vw, 8px))
+    calc(clamp(10px, 2vw, 20px) + clamp(5px, 1.5vw, 8px) + 2em);
   margin: 0 auto;
   position: relative;
 }
