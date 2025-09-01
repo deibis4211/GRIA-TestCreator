@@ -71,8 +71,8 @@ function getTargetStyleName() {
   if (!baseStyleName) return null;
 
   const darkModeEnabled = isDarkMode();
-  const targetStyleName = darkModeEnabled 
-    ? `${baseStyleName} Dark` 
+  const targetStyleName = darkModeEnabled
+    ? `${baseStyleName} Dark`
     : `${baseStyleName} Light`;
 
   const availableStyles = getAvailableStyleNames();
@@ -132,12 +132,16 @@ function applyCurrentStyle() {
 
     // Check if we should apply theme preference instead of exact current style
     const currentStyleName = getCurrentStyleName();
-    if (currentStyleName && (currentStyleName.endsWith(" Dark") || currentStyleName.endsWith(" Light"))) {
+    if (
+      currentStyleName &&
+      (currentStyleName.endsWith(" Dark") ||
+        currentStyleName.endsWith(" Light"))
+    ) {
       // Initialize dark mode preference if not set
       if (sessionStorage.getItem("isDarkMode") === null) {
         setDarkMode(currentStyleName.endsWith(" Dark"));
       }
-      
+
       // Apply theme based on preference, which might be different from stored style
       applyThemeBasedOnPreference();
     } else {
@@ -209,7 +213,7 @@ function applyThemeBasedOnPreference() {
 
     const darkModeEnabled = isDarkMode();
     console.log(
-      `Applied ${darkModeEnabled ? 'dark' : 'light'} theme: "${targetStyleName}"`
+      `Applied ${darkModeEnabled ? "dark" : "light"} theme: "${targetStyleName}"`,
     );
   }
 }
