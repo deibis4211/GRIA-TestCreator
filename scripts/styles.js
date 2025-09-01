@@ -186,11 +186,11 @@ function createThemeButton() {
   const themeButton = document.createElement("button");
   themeButton.id = "theme-btn";
   themeButton.className = "theme-btn small-btn";
-  
-  const themeImg = document.createElement('img');
-  themeImg.src = 'styles/sun.png';
-  themeImg.alt = 'Theme toggle';
-  themeImg.style.objectFit = 'contain';
+
+  const themeImg = document.createElement("img");
+  themeImg.src = "styles/sun.png";
+  themeImg.alt = "Theme toggle";
+  themeImg.style.objectFit = "contain";
   themeButton.appendChild(themeImg);
 
   // Set initial visibility based on current style
