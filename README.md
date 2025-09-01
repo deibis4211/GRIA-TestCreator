@@ -14,7 +14,7 @@ Si se usa el fichero [main.py](/main.py) se puede ejecutar y tras abrir una vent
 
 ### 2. **Crear una página web local**
 
-Usando el comando `python -m http.server 8000` se puede usar [http://localhost:8000](http://localhost:8000) para acceder a la aplicación web generada. Es necesario tener los ficheros de las preguntas previamente descargados, lo que requiere ejecutar el script [download](./UTILS/download.py).
+Usando el comando `python3 -m http.server 8000` se puede usar [http://localhost:8000](http://localhost:8000) para acceder a la aplicación web generada. Es necesario tener los ficheros de las preguntas previamente descargados, lo que requiere ejecutar el script [download](./UTILS/download.py).
 
 ### 3. **Usar GitHub Pages**
 

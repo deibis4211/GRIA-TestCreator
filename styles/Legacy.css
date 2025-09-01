@@ -30,6 +30,10 @@ body {
   right: 0;
 }
 
+.theme-btn{
+  background-color: transparent;
+}
+
 button {
   border: none;
   padding: clamp(10px, 2vw, 12px) clamp(15px, 3vw, 25px);

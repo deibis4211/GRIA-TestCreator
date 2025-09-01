@@ -110,11 +110,11 @@ def purgeEmpty(folderPath: str) -> None:
 
 def downloadRepository(
     owner: str = "SantiagoRR2004",
-    repo: str = "GRIA-TestCreator",
+    repo: str = "GRIA-Questions",
     databaseFolder: str = "database",
 ) -> float:
     """
-    Download all question files from the GRIA-TestCreator repository.
+    Download all question files from the GRIA-Questions repository.
 
     Args:
         - owner (str): GitHub repository owner
