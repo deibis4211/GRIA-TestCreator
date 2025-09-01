@@ -3,6 +3,27 @@ body {
   margin: 0;
 }
 
+.container {
+  padding: calc(clamp(10px, 2vw, 20px) + clamp(5px, 1.5vw, 8px))  calc(clamp(10px, 2vw, 20px) + clamp(5px, 1.5vw, 8px) + 2em);
+  margin: 0 auto;
+  position: relative;
+}
+
+#testForm {
+  text-align: justify;
+  font-size: clamp(16px, 3vw, 18px);
+}
+
+#submitButton {
+  display: block;
+  margin: 0 auto;
+}
+
+#scoreDisplay {
+  text-align: center;
+  font-size: clamp(16px, 3vw, 18px);
+}
+
 .small-btn {
   padding: clamp(5px, 1.5vw, 8px);
   margin: clamp(10px, 2vw, 20px);
@@ -63,23 +84,23 @@ button:hover {
 
 .question p {
   font-weight: bold;
-  font-size: 19px;
+  font-size: clamp(16px, 3vw, 18px);
 }
 
 .question span {
-  font-size: 17px;
+  font-size: clamp(14px, 2.5vw, 16px);
   font-style: italic;
 }
 
 .question li {
-  font-size: 18px;
+  font-size: clamp(14px, 2.5vw, 16px);
   list-style-type: none;
 }
 
 .correct-answer {
   display: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: clamp(14px, 2.5vw, 16px);
 }
 
 .answered {
