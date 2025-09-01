@@ -28,7 +28,7 @@ async function loadSubjectFolders() {
 async function loadFromGitHubPages() {
   // GitHub Pages: Use GitHub API with stored repository information
   const repoOwner = sessionStorage.getItem("repoOwner");
-  const repoName = sessionStorage.getItem("repoName");
+  const repoName = "GRIA-Questions";
 
   if (!repoOwner || !repoName) {
     throw new Error("Repository information not available in session storage");

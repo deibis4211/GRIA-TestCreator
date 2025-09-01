@@ -11,7 +11,7 @@ async function getQuestionFiles() {
 
     if (isGitHubPages) {
       const repoOwner = sessionStorage.getItem("repoOwner");
-      const repoName = sessionStorage.getItem("repoName");
+      const repoName = "GRIA-Questions";
 
       folderPath = `https://api.github.com/repos/${repoOwner}/GRIA-Questions/contents/${sessionStorage.getItem("selectedSubject")}`;
     } else {
