@@ -79,17 +79,65 @@ function getTargetStyleName() {
   return availableStyles.includes(targetStyleName) ? targetStyleName : null;
 }
 
-// Switch to next available style
+// Get unique base style names (without Light/Dark suffixes)
+function getUniqueBaseStyles() {
+  const styleNames = getAvailableStyleNames();
+  const baseStyles = new Set();
+  
+  styleNames.forEach(styleName => {
+    if (styleName.endsWith(" Dark")) {
+      baseStyles.add(styleName.replace(" Dark", ""));
+    } else if (styleName.endsWith(" Light")) {
+      baseStyles.add(styleName.replace(" Light", ""));
+    } else {
+      baseStyles.add(styleName);
+    }
+  });
+  
+  return Array.from(baseStyles);
+}
+
+// Get the preferred style name for a base style based on current theme preference
+function getPreferredStyleForBase(baseStyleName) {
+  const availableStyles = getAvailableStyleNames();
+  const darkModeEnabled = isDarkMode();
+  
+  // Check if theme variants exist for this base style
+  const darkVariant = `${baseStyleName} Dark`;
+  const lightVariant = `${baseStyleName} Light`;
+  
+  const hasDarkVariant = availableStyles.includes(darkVariant);
+  const hasLightVariant = availableStyles.includes(lightVariant);
+  
+  if (hasDarkVariant && hasLightVariant) {
+    // Both variants exist, choose based on preference
+    return darkModeEnabled ? darkVariant : lightVariant;
+  } else if (hasDarkVariant) {
+    // Only dark variant exists
+    return darkVariant;
+  } else if (hasLightVariant) {
+    // Only light variant exists
+    return lightVariant;
+  } else {
+    // No theme variants, return base style
+    return baseStyleName;
+  }
+}
+
+// Switch to next available style (skipping opposite theme variants)
 function switchStyle() {
   const stylesDict = getStylesFromSession();
-  const styleNames = getAvailableStyleNames();
+  const baseStyles = getUniqueBaseStyles();
 
-  if (styleNames.length === 0) return;
+  if (baseStyles.length === 0) return;
 
-  const currentStyleName = getCurrentStyleName();
-  const currentIndex = styleNames.indexOf(currentStyleName);
-  const nextIndex = (currentIndex + 1) % styleNames.length;
-  const nextStyleName = styleNames[nextIndex];
+  const currentBaseStyle = getBaseStyleName();
+  const currentIndex = baseStyles.indexOf(currentBaseStyle);
+  const nextIndex = (currentIndex + 1) % baseStyles.length;
+  const nextBaseStyle = baseStyles[nextIndex];
+  
+  // Get the preferred style name for the next base style
+  const nextStyleName = getPreferredStyleForBase(nextBaseStyle);
 
   // Apply the new style
   const existingLinks = document.querySelectorAll("link[data-style-switcher]");
