@@ -116,6 +116,9 @@ function switchStyle() {
     // Re-evaluate theme button visibility after style change
     updateThemeButtonVisibility();
 
+    // Update theme button image after style change
+    updateThemeButtonImage();
+
     console.log(`Switched to style: ${nextStyleName} (${stylePath})`);
   }
 }
@@ -211,6 +214,9 @@ function applyThemeBasedOnPreference() {
     // Save the new current style
     saveCurrentStyle(stylePath);
 
+    // Update theme button image after applying new theme
+    updateThemeButtonImage();
+
     const darkModeEnabled = isDarkMode();
     console.log(
       `Applied ${darkModeEnabled ? "dark" : "light"} theme: "${targetStyleName}"`,
@@ -228,6 +234,8 @@ function updateThemeButtonVisibility() {
       createThemeButton();
     } else {
       themeButton.style.display = "block";
+      // Update image when button becomes visible
+      updateThemeButtonImage();
     }
   } else {
     // Hide button if it exists
@@ -235,6 +243,20 @@ function updateThemeButtonVisibility() {
       themeButton.style.display = "none";
     }
   }
+}
+
+// Update theme button image based on current theme
+function updateThemeButtonImage() {
+  const themeButton = document.getElementById("theme-btn");
+  if (!themeButton) return;
+
+  const themeImg = themeButton.querySelector("img");
+  if (!themeImg) return;
+
+  const darkModeEnabled = isDarkMode();
+  // Show moon for light theme (clicking switches to dark)
+  // Show sun for dark theme (clicking switches to light)
+  themeImg.src = darkModeEnabled ? "styles/sun.png" : "styles/moon.png";
 }
 
 // Create theme switch button that toggles between Light and Dark
@@ -249,10 +271,12 @@ function createThemeButton() {
   themeButton.className = "theme-btn small-btn";
 
   const themeImg = document.createElement("img");
-  themeImg.src = "styles/sun.png";
-  themeImg.alt = "Theme toggle";
+  themeImg.src = isDarkMode() ? "styles/sun.png" : "styles/moon.png";
   themeImg.style.objectFit = "contain";
   themeButton.appendChild(themeImg);
+
+  // Set initial image based on current theme
+  updateThemeButtonImage();
 
   // Set initial visibility based on current style
   themeButton.style.display = hasThemeCounterpart() ? "block" : "none";
@@ -260,6 +284,8 @@ function createThemeButton() {
   // Add theme switching functionality
   themeButton.onclick = function () {
     switchTheme();
+    // Update image after theme switch
+    updateThemeButtonImage();
   };
 
   document.body.appendChild(themeButton);
