@@ -83,8 +83,8 @@ function getTargetStyleName() {
 function getUniqueBaseStyles() {
   const styleNames = getAvailableStyleNames();
   const baseStyles = new Set();
-  
-  styleNames.forEach(styleName => {
+
+  styleNames.forEach((styleName) => {
     if (styleName.endsWith(" Dark")) {
       baseStyles.add(styleName.replace(" Dark", ""));
     } else if (styleName.endsWith(" Light")) {
@@ -93,7 +93,7 @@ function getUniqueBaseStyles() {
       baseStyles.add(styleName);
     }
   });
-  
+
   return Array.from(baseStyles);
 }
 
@@ -101,14 +101,14 @@ function getUniqueBaseStyles() {
 function getPreferredStyleForBase(baseStyleName) {
   const availableStyles = getAvailableStyleNames();
   const darkModeEnabled = isDarkMode();
-  
+
   // Check if theme variants exist for this base style
   const darkVariant = `${baseStyleName} Dark`;
   const lightVariant = `${baseStyleName} Light`;
-  
+
   const hasDarkVariant = availableStyles.includes(darkVariant);
   const hasLightVariant = availableStyles.includes(lightVariant);
-  
+
   if (hasDarkVariant && hasLightVariant) {
     // Both variants exist, choose based on preference
     return darkModeEnabled ? darkVariant : lightVariant;
@@ -135,7 +135,7 @@ function switchStyle() {
   const currentIndex = baseStyles.indexOf(currentBaseStyle);
   const nextIndex = (currentIndex + 1) % baseStyles.length;
   const nextBaseStyle = baseStyles[nextIndex];
-  
+
   // Get the preferred style name for the next base style
   const nextStyleName = getPreferredStyleForBase(nextBaseStyle);
 
