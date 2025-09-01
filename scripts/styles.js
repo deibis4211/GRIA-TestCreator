@@ -16,6 +16,17 @@ function getAvailableStyleNames() {
   return Object.keys(stylesDict);
 }
 
+// Get dark mode preference from session storage
+function isDarkMode() {
+  const darkMode = sessionStorage.getItem("isDarkMode");
+  return darkMode === "true";
+}
+
+// Set dark mode preference in session storage
+function setDarkMode(darkMode) {
+  sessionStorage.setItem("isDarkMode", darkMode.toString());
+}
+
 // Save current style to session storage (stores the file path)
 function saveCurrentStyle(stylePath) {
   sessionStorage.setItem("style", stylePath);
@@ -39,6 +50,33 @@ function getCurrentStyleName() {
     }
   }
   return null;
+}
+
+// Get the base style name (without Light/Dark suffix)
+function getBaseStyleName() {
+  const currentStyleName = getCurrentStyleName();
+  if (!currentStyleName) return null;
+
+  if (currentStyleName.endsWith(" Dark")) {
+    return currentStyleName.replace(" Dark", "");
+  } else if (currentStyleName.endsWith(" Light")) {
+    return currentStyleName.replace(" Light", "");
+  }
+  return currentStyleName;
+}
+
+// Get the appropriate style name based on current base style and dark mode setting
+function getTargetStyleName() {
+  const baseStyleName = getBaseStyleName();
+  if (!baseStyleName) return null;
+
+  const darkModeEnabled = isDarkMode();
+  const targetStyleName = darkModeEnabled 
+    ? `${baseStyleName} Dark` 
+    : `${baseStyleName} Light`;
+
+  const availableStyles = getAvailableStyleNames();
+  return availableStyles.includes(targetStyleName) ? targetStyleName : null;
 }
 
 // Switch to next available style
@@ -68,6 +106,13 @@ function switchStyle() {
     // Save the new current style (save the path, not the name)
     saveCurrentStyle(stylePath);
 
+    // Update dark mode preference based on the new style
+    if (nextStyleName.endsWith(" Dark")) {
+      setDarkMode(true);
+    } else if (nextStyleName.endsWith(" Light")) {
+      setDarkMode(false);
+    }
+
     // Re-evaluate theme button visibility after style change
     updateThemeButtonVisibility();
 
@@ -85,14 +130,26 @@ function applyCurrentStyle() {
     );
     existingLinks.forEach((link) => link.remove());
 
-    // Apply the current style
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = currentStylePath;
-    link.setAttribute("data-style-switcher", "true");
-    document.head.appendChild(link);
+    // Check if we should apply theme preference instead of exact current style
+    const currentStyleName = getCurrentStyleName();
+    if (currentStyleName && (currentStyleName.endsWith(" Dark") || currentStyleName.endsWith(" Light"))) {
+      // Initialize dark mode preference if not set
+      if (sessionStorage.getItem("isDarkMode") === null) {
+        setDarkMode(currentStyleName.endsWith(" Dark"));
+      }
+      
+      // Apply theme based on preference, which might be different from stored style
+      applyThemeBasedOnPreference();
+    } else {
+      // Apply the current style as-is (for styles without Light/Dark variants)
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = currentStylePath;
+      link.setAttribute("data-style-switcher", "true");
+      document.head.appendChild(link);
 
-    console.log(`Applied current style: ${currentStylePath}`);
+      console.log(`Applied current style: ${currentStylePath}`);
+    }
   }
 }
 
@@ -119,24 +176,23 @@ function switchTheme() {
   const currentStyleName = getCurrentStyleName();
   if (!currentStyleName) return;
 
-  let targetStyleName;
+  // Toggle dark mode setting
+  const currentDarkMode = isDarkMode();
+  setDarkMode(!currentDarkMode);
 
-  if (currentStyleName.endsWith(" Dark")) {
-    targetStyleName = currentStyleName.replace(" Dark", " Light");
-  } else if (currentStyleName.endsWith(" Light")) {
-    targetStyleName = currentStyleName.replace(" Light", " Dark");
-  } else {
-    // Current style doesn't have Light/Dark suffix, can't switch
+  // Apply the appropriate theme based on the new setting
+  applyThemeBasedOnPreference();
+}
+
+// Apply theme based on current dark mode preference
+function applyThemeBasedOnPreference() {
+  const targetStyleName = getTargetStyleName();
+  if (!targetStyleName) {
+    console.log("No matching theme available for current preference");
     return;
   }
 
-  const availableStyles = getAvailableStyleNames();
-  if (!availableStyles.includes(targetStyleName)) {
-    console.log(`Target theme "${targetStyleName}" not available`);
-    return;
-  }
-
-  // Apply the theme counterpart
+  // Apply the target style
   const existingLinks = document.querySelectorAll("link[data-style-switcher]");
   existingLinks.forEach((link) => link.remove());
 
@@ -151,8 +207,9 @@ function switchTheme() {
     // Save the new current style
     saveCurrentStyle(stylePath);
 
+    const darkModeEnabled = isDarkMode();
     console.log(
-      `Switched theme from "${currentStyleName}" to "${targetStyleName}"`,
+      `Applied ${darkModeEnabled ? 'dark' : 'light'} theme: "${targetStyleName}"`
     );
   }
 }
