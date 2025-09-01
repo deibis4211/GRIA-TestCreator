@@ -37,7 +37,7 @@ async function loadFromGitHubPages() {
   console.log(`Using stored repository: ${repoOwner}/${repoName}`);
 
   // Use GitHub API to get folders from the other repository
-  const apiUrl = `https://api.github.com/repos/${repoOwner}/GRIA-TestCreator/contents`;
+  const apiUrl = `https://api.github.com/repos/${repoOwner}/GRIA-Questions/contents`;
   console.log("Fetching from API:", apiUrl);
 
   const response = await fetch(apiUrl);
@@ -56,7 +56,7 @@ async function loadFromGitHubPages() {
   // For each folder, check if it contains at least one .json file
   const validFolders = [];
   for (const folder of dirFolders) {
-    const folderApiUrl = `https://api.github.com/repos/${repoOwner}/GRIA-TestCreator/contents/${folder.name}`;
+    const folderApiUrl = `https://api.github.com/repos/${repoOwner}/GRIA-Questions/contents/${folder.name}`;
     try {
       const folderResp = await fetch(folderApiUrl);
       if (!folderResp.ok) continue;

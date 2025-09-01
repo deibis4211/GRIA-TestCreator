@@ -13,7 +13,7 @@ async function getQuestionFiles() {
       const repoOwner = sessionStorage.getItem("repoOwner");
       const repoName = sessionStorage.getItem("repoName");
 
-      folderPath = `https://api.github.com/repos/${repoOwner}/GRIA-TestCreator/contents/${sessionStorage.getItem("selectedSubject")}`;
+      folderPath = `https://api.github.com/repos/${repoOwner}/GRIA-Questions/contents/${sessionStorage.getItem("selectedSubject")}`;
     } else {
       folderPath = "database/" + sessionStorage.getItem("selectedSubject");
     }
