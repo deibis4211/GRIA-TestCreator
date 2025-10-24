@@ -5,36 +5,34 @@ function convertTextToHtml(text) {
   /**
    * Convert special characters to HTML equivalents
    * JSON.parse already decoded \n to actual newlines, so we just need to convert to HTML
-   * 
+   *
    * @param {string} text - The text to convert
    * @returns {string} The text with special characters converted to HTML
    */
-  if (typeof text !== 'string') return text;
+  if (typeof text !== "string") return text;
   console.log("Converting text:", text);
-  return text
-    .replace(/\n/g, '<br>')
-    .replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+  return text.replace(/\n/g, "<br>").replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
 }
 
 function preprocessQuestion(question) {
   /**
    * Preprocess a question to convert special characters in text fields
-   * 
+   *
    * @param {Object} question - The question object
    * @returns {Object} The preprocessed question
    */
   const processed = { ...question };
-  
+
   // Convert question text
   if (processed.question) {
     processed.question = convertTextToHtml(processed.question);
   }
-  
+
   // Convert options array
   if (Array.isArray(processed.options)) {
-    processed.options = processed.options.map(opt => convertTextToHtml(opt));
+    processed.options = processed.options.map((opt) => convertTextToHtml(opt));
   }
-  
+
   return processed;
 }
 
