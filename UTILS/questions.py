@@ -78,9 +78,7 @@ def questionGenerator(
         # Add the folder and the topic to the question
         for q in choosenQuestions:
             q["folder"] = folderPath
-            q["question"] = (
-                q["question"] + " [Tema " + os.path.basename(filePath)[4:-5] + "]"
-            )
+            q["question"] = "[" + os.path.basename(filePath)[:-5] + "] " + q["question"]
 
         # Add the questions to the list that will be returned
         questions.extend(choosenQuestions)
