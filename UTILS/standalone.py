@@ -84,11 +84,15 @@ def makeStandalone(exam: str, style: str, replaceables: dict) -> str:
 
         if match:
             hasQuotes = bool(match.group(1))  # Check if quotes were found
+            # Convert value to string to ensure proper handling
+            value = str(value)
             if hasQuotes:
-                # Replace with quotes
-                exam = general_pattern.sub(f'{key} = "{value}"', exam)
+                # Replace with quotes - escape backslashes for regex replacement
+                replacement = f'{key} = "{value}"'.replace("\\", "\\\\")
+                exam = general_pattern.sub(replacement, exam)
             else:
-                # Replace without quotes
-                exam = general_pattern.sub(f"{key} = {value}", exam)
+                # Replace without quotes - escape backslashes for regex replacement
+                replacement = f"{key} = {value}".replace("\\", "\\\\")
+                exam = general_pattern.sub(replacement, exam)
 
     return exam

@@ -1,6 +1,7 @@
 from UTILS import standalone
 from UTILS import questions
 import webbrowser
+import json
 
 
 def examGenerator(
@@ -8,7 +9,7 @@ def examGenerator(
     numberOfExams: int = 1,
     numberOfQuestions: str = 30,
     questionsPerTopic: dict = None,
-    style: str = "styles/legacy.css",
+    style: str = "styles/Legacy.css",
 ) -> None:
     """
     Generates exams based on the number of exams, number of questions and the folder path
@@ -45,7 +46,7 @@ def examGenerator(
                     styleContent,
                     {
                         "numberOfQuestions": numberOfQuestions,
-                        "questionList": validQuestions,
+                        "questionList": json.dumps(validQuestions),
                     },
                 )
             )

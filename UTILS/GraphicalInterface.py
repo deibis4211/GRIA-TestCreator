@@ -211,7 +211,8 @@ class TestCreator:
 
             exam.examGenerator(
                 **args,
-                # The style has not been implemented yet
+                # TODO: Allow style selection from GUI
+                style=os.path.join(self.currentDirectory, "..", "styles", "Legacy.css")
             )
             self.window.destroy()
 
