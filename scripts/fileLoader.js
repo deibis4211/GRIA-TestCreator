@@ -77,10 +77,12 @@ async function loadQuestionsFromFile(filePath) {
     const questions = data.questions || [];
 
     // Extract filename without .json extension and add it as prefix to each question
-    const fileName = decodeURIComponent(filePath.split('/').pop().replace('.json', ''));
-    
+    const fileName = decodeURIComponent(
+      filePath.split("/").pop().replace(".json", ""),
+    );
+
     // Add the filename prefix to each question
-    questions.forEach(q => {
+    questions.forEach((q) => {
       if (q.question) {
         q.question = `[${fileName}] ${q.question}`;
       }
